@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coffee & Bakery Haven</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f9f6f2;
+      color: #4b2e13;
+    }
+    header {
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      color: #fff;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background: rgba(44, 36, 27, 0.7);
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .hero {
+      text-align: center;
+      margin-top: 5rem;
+      margin-bottom: 3rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px #0008;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    .cta {
+      background: #b6894a;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px #b6894a33;
+    }
+    .cta:hover {
+      background: #8c6239;
+    }
+    section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #fffefa;
+      border-radius: 16px;
+      box-shadow: 0 2px 20px #b6894a15;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+    /* Menu styles */
+    .menu-group {
+      margin-bottom: 2.5rem;
+    }
+    .menu-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .item {
+      background: #fcf6f1;
+      padding: 1.2rem;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px #b6894a25;
+      width: 220px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .item img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 0.7rem;
+      box-shadow: 0 2px 6px #b6894a18;
+    }
+    .item h3 {
+      margin: 0.5rem 0 0.3rem 0;
+      font-size: 1.2rem;
+    }
+    .item p {
+      font-size: 0.97rem;
+      margin: 0 0 0.5rem 0;
+      color: #7d5d36;
+    }
+    .item span {
+      margin-top: 0.3rem;
+      font-weight: bold;
+      color: #b6894a;
+      font-size: 1.1rem;
+    }
+    /* Contact Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    form input, form textarea {
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    form button {
+      background: #b6894a;
+      color: #fff;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    form button:hover {
+      background: #8c6239;
+    }
+    .info {
+      text-align: center;
+      margin-top: 2rem;
+      color: #b6894a;
+      font-size: 1.1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem 0;
+      background: #4b2e13;
+      color: #fff;
+      letter-spacing: 1px;
+      font-size: 1rem;
+    }
+    @media (max-width: 700px) {
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .menu-items {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      header {
+        min-height: 40vh;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Coffee & Bakery Haven</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#coffee-menu">Coffee</a></li>
+        <li><a href="#bakery-menu">Bakery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <h1>Welcome to Coffee & Bakery Haven</h1>
+      <p>Your perfect spot for freshly brewed coffee and delightful bakery treats in Pakistan.</p>
+      <a href="#coffee-menu" class="cta">See Our Menu</a>
+    </div>
+  </header>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      At Coffee & Bakery Haven, we blend the art of coffee brewing with the warmth of oven-fresh bakery items, all under one roof. Whether you’re looking for your morning espresso or a sweet slice of cake, our cozy cafe offers it all with a touch of Pakistani hospitality!
+    </p>
+  </section>
+  <section id="coffee-menu" class="menu-group">
+    <h2>Our Coffee Menu</h2>
+    <div class="menu-items">
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Espresso">
+        <h3>Espresso</h3>
+        <p>Rich, strong shot of pure coffee.</p>
+        <span>PKR 350</span>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Cappuccino">
+        <h3>Cappuccino</h3>
+        <p>Espresso with steamed milk and milk foam.</p>
+        <span>PKR 450</span>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Latte">
+        <h3>Latte</h3>
+        <p>Smooth blend of espresso and steamed milk.</p>
+        <span>PKR 480</span>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Cold Brew">
+        <h3>Cold Brew</h3>
+        <p>Chilled coffee, steeped for hours.</p>
+        <span>PKR 520</span>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=400&q=80" alt="Mocha">
+        <h3>Mocha</h3>
+        <p>Espresso, chocolate, and steamed milk.</p>
+        <span>PKR 500</span>
+      </div>
+    </div>
+  </section>
+  <section id="bakery-menu" class="menu-group">
+    <h2>Our Bakery Items</h2>
+    <div class="menu-items">
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=400&q=80" alt="Croissant">
+        <h3>Croissant</h3>
+        <p>Buttery, flaky classic French pastry.</p>
+        <span>PKR 250</span>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Chocolate Cake">
+        <h3>Chocolate Cake</h3>
+        <p>Moist chocolate sponge with creamy frosting.</p>
+        <span>PKR 450 (slice)</span>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Muffin">
+        <h3>Blueberry Muffin</h3>
+        <p>Soft muffin packed with juicy blueberries.</p>
+        <span>PKR 180</span>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80" alt="Danish Pastry">
+        <h3>Danish Pastry</h3>
+        <p>Sweet pastry filled with fruit jam.</p>
+        <span>PKR 220</span>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Brownie">
+        <h3>Chocolate Brownie</h3>
+        <p>Fudgy, rich chocolate brownie square.</p>
+        <span>PKR 160</span>
+      </div>
+    </div>
+  </section>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div class="info">
+      <p>Email: info@coffeebakeryhaven.pk</p>
+      <p>Location: 123 Brew Lane, Karachi, Pakistan</p>
+      <p>Phone: 021-12345678</p>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2025 Coffee & Bakery Haven. All rights reserved.</p>
+  </footer>
+</body>
+</html>
