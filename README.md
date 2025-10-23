@@ -1,2 +1,2 @@
 my websites
-A responsive coffee shop and bakery website showcasing delicious treats, cozy vibes, and smooth navigation — built with HTML, CSS, and JavaScript.
+Front-end web developer skilled in HTML, CSS, and JavaScript, creating responsive, visually appealing, and interactive websites.”
