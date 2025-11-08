@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mobile Reviews — Refined Edition</title>
+
+<style>
+:root{
+  --bg:#0b0f19;
+  --card:#131a28;
+  --muted:#9aa5c4;
+  --text:#e9eef7;
+  --accent:#00d4ff;
+  --accent2:#7c3aed;
+  --glass:rgba(255,255,255,0.04);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Inter,system-ui;
+  background:linear-gradient(180deg,var(--bg),#050913 120%);
+  color:var(--text);padding-bottom:60px;
+}
+header{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:blur(14px);
+  background:rgba(10,15,25,0.55);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  padding:14px 18px;display:flex;justify-content:space-between;align-items:center;
+}
+.logo{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:grid;place-items:center;font-weight:700;font-size:14px;color:white;
+}
+.search{display:flex;align-items:center;background:var(--card);padding:8px 14px;border-radius:14px;border:1px solid rgba(255,255,255,0.06)}
+.search input{background:transparent;border:0;color:var(--text);outline:none;font-size:14px;width:160px}
+main{padding:18px;max-width:1000px;margin:auto;}
+.hero{
+  background:linear-gradient(120deg,var(--accent2)20%,var(--accent)) padding-box,var(--glass) border-box;
+  border:1px solid transparent;padding:22px;border-radius:20px;margin-bottom:22px;
+}
+.filters-row{display:flex;gap:10px;margin:16px 0;overflow:auto;padding-bottom:4px}
+.chip{padding:8px 14px;border-radius:999px;background:var(--glass);border:1px solid rgba(255,255,255,0.05);font-size:13px;cursor:pointer;transition:.25s}
+.chip.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:white;border:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.card{
+  background:var(--card);border-radius:16px;border:1px solid rgba(255,255,255,0.05);
+  padding:14px;transition:.25s;cursor:pointer;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.15)}
+.card img{width:100%;border-radius:12px;aspect-ratio:16/9;object-fit:cover;margin-bottom:10px}
+.card h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.card .excerpt{font-size:13px;color:var(--muted);margin-bottom:8px}
+.specs{font-size:12px;color:var(--muted);line-height:1.4;margin-bottom:8px}
+.rating{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  padding:6px 10px;border-radius:8px;font-weight:700;color:white;font-size:13px;display:inline-block;
+}
+footer{text-align:center;color:var(--muted);padding:32px 0;font-size:13px}
+
+/* MODAL */
+#modal{
+  position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);z-index:50;
+}
+#modalContent{
+  background:var(--card);padding:24px;border-radius:18px;max-width:480px;width:90%;
+  border:1px solid rgba(255,255,255,0.1);
+}
+#modalContent h2{margin-bottom:10px}
+#modalContent img{width:100%;border-radius:12px;margin-bottom:14px}
+.closeBtn{margin-top:18px;background:none;border:1px solid rgba(255,255,255,0.2);padding:8px 14px;border-radius:8px;color:var(--text);cursor:pointer}
+.closeBtn:hover{background:rgba(255,255,255,0.07)}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div style="display:flex;align-items:center;gap:14px">
+    <div class="logo">MR</div>
+    <div><h1 style="font-size:16px">MobileReviews</h1><p style="font-size:12px;color:var(--muted)">Latest phones & insights</p></div>
+  </div>
+  <div class="search"><input id="search" placeholder="Search phones..."></div>
+</header>
+
+<main>
+<section class="hero">
+  <h2>Top Mobile Reviews</h2>
+  <p>Up-to-date performance, camera comparisons, and real value assessments.</p>
+</section>
+
+<div class="filters-row">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="flagship">Flagship</button>
+  <button class="chip" data-filter="budget">Budget</button>
+  <button class="chip" data-filter="camera">Camera</button>
+  <button class="chip" data-filter="foldable">Foldable</button>
+</div>
+
+<section id="list" class="cards"></section>
+</main>
+
+<footer>Demo display • Not for commercial use</footer>
+
+<div id="modal">
+  <div id="modalContent"></div>
+</div>
+
+<script>
+const DATA=[
+{id:1,title:"Orion X Pro",tag:"flagship",rating:9.3,img:"https://fdn.gsmarena.com/imgroot/reviews/24/samsung-galaxy-s24-ultra/lifestyle/-1024w2/gsmarena_001.jpg",excerpt:"Ultra display + strong performance.",specs:["6.8\" AMOLED 120Hz","Snapdragon 8 Gen 3","5000mAh","Quad Camera 200MP"]},
+{id:2,title:"Nimbus Lite",tag:"budget",rating:8.1,img:"https://fdn.gsmarena.com/imgroot/reviews/22/xiaomi-redmi-note-12/pro/-1024w2/gsmarena_002.jpg",excerpt:"Solid battery and good UI.",specs:["6.6\" OLED","Dimensity 1080","5000mAh","50MP Camera"]},
+{id:3,title:"PixelPlus Zoom",tag:"camera",rating:9.5,img:"https://fdn.gsmarena.com/imgroot/static/img/pixel-8-pro-1.jpg",excerpt:"Outstanding zoom capability.",specs:["6.7\" OLED","Google Tensor","4950mAh","Periscope Zoom Lens"]},
+{id:4,title:"Atlas Fold",tag:"foldable",rating:7.9,img:"https://fdn.gsmarena.com/imgroot/reviews/23/samsung-galaxy-z-fold5/lifestyle/-1024w2/gsmarena_001.jpg",excerpt:"Foldable tech improving.",specs:["7.6\" Foldable Display","Snapdragon 8 Gen 2","4400mAh","Triple Cameras"]},
+{id:5,title:"iPhone 15 Pro Max",tag:"flagship",rating:9.4,img:"https://fdn.gsmarena.com/imgroot/reviews/23/apple-iphone-15-pro-max/lifestyle/-1024w2/gsmarena_001.jpg",excerpt:"Best performance and camera.",specs:["6.7\" OLED","A17 Pro","4422mAh","48MP Main + 5x Zoom"]},
+{id:6,title:"Samsung Galaxy A54",tag:"budget",rating:8.6,img:"https://fdn.gsmarena.com/imgroot/reviews/23/samsung-galaxy-a54-5g/lifestyle/-1024w2/gsmarena_001.jpg",excerpt:"Smooth and consistent.",specs:["6.4\" AMOLED","Exynos 1380","5000mAh","50MP Main"]},
+{id:7,title:"Vivo X100 Pro",tag:"camera",rating:9.6,img:"https://fdn.gsmarena.com/imgroot/reviews/23/vivo-x100-pro/lifestyle/-1024w2/gsmarena_001.jpg",excerpt:"Night photography excellence.",specs:["6.78\" AMOLED","Dimensity 9300","5400mAh","ZEISS Optics"]},
+{id:8,title:"Honor Magic V2",tag:"foldable",rating:8.7,img:"https://fdn.gsmarena.com/imgroot/reviews/23/honor-magic-v2/lifestyle/-1024w2/gsmarena_000.jpg",excerpt:"Thin and refined foldable.",specs:["7.92\" Foldable OLED","Snapdragon 8 Gen 2","5000mAh","Triple Camera"]},
+{id:9,title:"OnePlus 12",tag:"flagship",rating:9.1,img:"https://fdn.gsmarena.com/imgroot/reviews/24/oneplus-12/lifestyle/-1024w2/gsmarena_001.jpg",excerpt:"Fast and clean UI.",specs:["6.82\" AMOLED","Snapdragon 8 Gen 3","5400mAh","Hasselblad Camera"]},
+{id:10,title:"Poco X6 Pro",tag:"budget",rating:8.9,img:"https://fdn.gsmarena.com/imgroot/reviews/24/xiaomi-poco-x6-pro/lifestyle/-1024w2/gsmarena_001.jpg",excerpt:"Gaming value king.",specs:["6.67\" AMOLED","Dimensity 8300","5000mAh","64MP Main"]},
+];
+
+let state={filter:"all",query:""};
+
+function render(){
+  let arr=DATA.filter(x=>(state.filter==="all"||x.tag===state.filter)&&x.title.toLowerCase().includes(state.query.toLowerCase()));
+  list.innerHTML=arr.map(r=>`
+    <article class="card" onclick="openDetails(${r.id})">
+      <img src="${r.img}">
+      <h3>${r.title}</h3>
+      <p class="excerpt">${r.excerpt}</p>
+      <div class="specs">${r.specs.join(" • ")}</div>
+      <span class="rating">${r.rating}</span>
+    </article>
+  `).join("");
+}
+
+search.oninput=e=>{state.query=e.target.value.trim();render();}
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));c.classList.add("active");state.filter=c.dataset.filter;render();});
+
+function openDetails(id){
+  const d=DATA.find(x=>x.id===id);
+  modalContent.innerHTML=`
+    <img src="${d.img}">
+    <h2>${d.title}</h2>
+    <p style="color:var(--muted);margin-bottom:10px">${d.excerpt}</p>
+    <p><strong>Specs</strong><br>${d.specs.join("<br>")}</p>
+    <p style="margin-top:10px"><strong>Rating:</strong> ${d.rating}</p>
+    <button class="closeBtn" onclick="modal.style.display='none'">Close</button>`;
+  modal.style.display="grid";
+}
+
+modal.onclick=e=>{if(e.target.id==="modal")modal.style.display="none";}
+render();
+</script>
+
+</body>
+</html>

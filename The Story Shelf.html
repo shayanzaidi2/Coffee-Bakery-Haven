@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novels Library</title>
+<style>
+    :root {
+        --bg: #f5e6d3;
+        --card: #d9b382;
+        --text: #3e2723;
+        --accent: #8b4513;
+        --muted: #6d4c41;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: var(--accent);
+        padding: 20px;
+        text-align: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .search-bar {
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    .search-bar input {
+        padding: 10px;
+        width: 60%;
+        max-width: 400px;
+        border: 2px solid var(--muted);
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    .novel-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .novel-card {
+        background-color: var(--card);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+        text-align: center;
+    }
+
+    .novel-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .novel-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .novel-card h3 {
+        margin-bottom: 10px;
+        color: var(--accent);
+        font-size: 1.2rem;
+    }
+
+    .novel-card p {
+        color: var(--text);
+        font-size: 1rem;
+    }
+</style>
+</head>
+<body>
+
+<header>Novels Library</header>
+
+<div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for a novel or author..." onkeyup="searchNovels()">
+</div>
+
+<div class="novel-container" id="novelContainer">
+    <!-- Novel cards will be dynamically inserted here -->
+</div>
+
+<script>
+    // Sample data for 10 novels with images (replace URLs with real book covers)
+    const novels = [
+        { title: "Pride and Prejudice", author: "Jane Austen", img: "https://covers.openlibrary.org/b/id/8228691-L.jpg" },
+        { title: "1984", author: "George Orwell", img: "https://covers.openlibrary.org/b/id/7222246-L.jpg" },
+        { title: "To Kill a Mockingbird", author: "Harper Lee", img: "https://covers.openlibrary.org/b/id/8306666-L.jpg" },
+        { title: "The Great Gatsby", author: "F. Scott Fitzgerald", img: "https://covers.openlibrary.org/b/id/7352161-L.jpg" },
+        { title: "Moby Dick", author: "Herman Melville", img: "https://covers.openlibrary.org/b/id/8101352-L.jpg" },
+        { title: "War and Peace", author: "Leo Tolstoy", img: "https://covers.openlibrary.org/b/id/7222271-L.jpg" },
+        { title: "Crime and Punishment", author: "Fyodor Dostoevsky", img: "https://covers.openlibrary.org/b/id/8231851-L.jpg" },
+        { title: "The Catcher in the Rye", author: "J.D. Salinger", img: "https://covers.openlibrary.org/b/id/8231996-L.jpg" },
+        { title: "Brave New World", author: "Aldous Huxley", img: "https://covers.openlibrary.org/b/id/8775113-L.jpg" },
+        { title: "The Hobbit", author: "J.R.R. Tolkien", img: "https://covers.openlibrary.org/b/id/6979861-L.jpg" }
+    ];
+
+    const container = document.getElementById('novelContainer');
+
+    function displayNovels(list) {
+        container.innerHTML = '';
+        list.forEach(novel => {
+            const card = document.createElement('div');
+            card.classList.add('novel-card');
+            card.innerHTML = `
+                <img src="${novel.img}" alt="${novel.title}">
+                <h3>${novel.title}</h3>
+                <p>Author: ${novel.author}</p>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function searchNovels() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = novels.filter(n => n.title.toLowerCase().includes(query) || n.author.toLowerCase().includes(query));
+        displayNovels(filtered);
+    }
+
+    // Initial display
+    displayNovels(novels);
+</script>
+
+</body>
+</html>
